@@ -1,0 +1,15 @@
+/* @Author
+ * Student Name:  Emre Çamlıca
+ * Student ID : 150210071
+ */
+university_array[3] ("McLaren's University" named object of University class) calls (by reference) evaluate_student() (method of University class) with argument student3 ("Amy" named object of Student class).
+(inside the if condition) student3 calls get_GPA(), get_GRE(), get_TOEFL() (constant methods of student class) with no arguments (return values multiplied respectively by) this (university_array[3]) calls get_weight_values() (method of University class) with no arguments (which returns the weight_values array (0, 1, 2 indexes used respectively)) (added by) this (university_array[3]) calls get_bias() (constant method of University class) with no arguments.
+(if condition is not satisfied).
+(inside the else block) student3 calls set_number_of_applications() (method of student class) with argument student.get_number_of_applications()+1
+(inside the argument) student3 calls get_number_of_applications() method of student class with no arguments.
+(inside the cout (object of ostream class)) student3 calls get_name() (constant method of student class) with no arguments, this (university_array[3]) calls get_name (constant method of University class)
+(evaluate_student() terminates).
+The main function calls (by delete operator) destructor ~Student() with no arguments for student4 ("Lily" named object of Student class).
+(inside the destructor) (inside the cout (object of ostream class)) student4 calls get_name with no arguments, student4 calls get_number_of_applications() (constant method of student class) with no arguments.
+(~Student() terminates).
+(after the main function returns) destructors of student3, student2 and student1 are called (same steps as above), respectively. Then the default default destructor of university class is called for university objects (3,2,1,0 indexed elements of university_array[3], respectively).

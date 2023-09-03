@@ -1,0 +1,230 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+\usepackage{graphicx}  
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{breakcites}
+\usepackage{indentfirst}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage[cmex10]{amsmath}
+\usepackage{stfloats}
+\usepackage{multirow}
+
+\renewcommand{\refname}{REFERENCES}
+\linespread{1.3}
+
+\usepackage{mathtools}
+%\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\thispagestyle{empty}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\textbf{}\\
+\textbf{\Large{ISTANBUL TECHNICAL UNIVERSITY}}\\
+\vspace{0.5cm}
+\textbf{\Large{COMPUTER ENGINEERING DEPARTMENT}}\\
+\vspace{2cm}
+\textbf{\Large{BLG 242E\\ DIGITAL CIRCUITS LABORATORY\\ HOMEWORK REPORT}}\\
+\vspace{2.8cm}
+\begin{table}[ht]
+\centering
+\Large{
+\begin{tabular}{lcl}
+\textbf{HOMEWORK NO}  & : & 1 \\
+\textbf{DUE DATE}  & : & 24.03.2023 \\
+\textbf{GROUP NO}  & : & G6 \\
+\end{tabular}}
+\end{table}
+\vspace{1cm}
+\textbf{\Large{GROUP MEMBERS:}}\\
+\begin{table}[ht]
+\centering
+\Large{
+\begin{tabular}{rcl}
+150200091  & : & HAKAN  DURAN \\
+150210071  & : & EMRE  ÇAMLICA \\
+\end{tabular}}
+\end{table}
+\vspace{2.8cm}
+\textbf{\Large{SPRING 2023}}
+
+\end{center}
+
+\end{titlepage}
+
+\thispagestyle{empty}
+\addtocontents{toc}{\contentsline {section}{\numberline {}FRONT COVER}{}}
+\addtocontents{toc}{\contentsline {section}{\numberline {}CONTENTS}{}}
+\setcounter{tocdepth}{4}
+\tableofcontents
+\clearpage
+
+\setcounter{page}{1}
+
+\section{INTRODUCTION}
+
+In this homework we refreshed our memory about digital circuits and designed basic logic gates as modules using Verilog.
+
+\section{PRELIMINERY STUDY}
+\subsection{}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+\subsubsection{}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{refs/Karnough_hw1.png}	
+        \caption{Karnough Map of $F_1$}
+	\label{fig1}
+\end{figure}
+As can be seen from Figure 1, the prime implicants of the function $F_1(a, b, c, d)$ are $\overline{b}\overline{d}, \overline{a}\overline{d}, a\overline{b}c, acd, bcd$ and $\overline{a}bc$
+\subsubsection{}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1.0\textwidth]{refs/QuineMcCluskey_hw1.png}	
+        \caption{Quine-McCluskey Method for $F_1$}
+	\label{fig2}
+\end{figure}
+The red cells of the tables shown in Figure 2 correspond to the indexes of one generating combinations for the function $F_1(a, b, c, d)$, which can be written as $\overline{b}\overline{d}, \overline{a}\overline{d}, a\overline{b}c, acd, bcd$ and $\overline{a}bc$. Both methods resulted in the same prime implicants, as expected.
+\newpage
+\subsubsection{}
+For the prime implicant chart we will assign variables to 6 letters such that:
+\\
+A: $\overline{a}\overline{d}$ (Cost=2+2+1+1=6),
+B: $\overline{b}\overline{d}$ (Cost=2+2+1+1=6),
+C: $\overline{a}bc$ (Cost=2+2+2+1=7),
+\\
+D: $bcd$ (Cost=2+2+2=6),
+E: $a\overline{b}c$ (Cost=2+2+2+1=7),
+F: $acd$ (Cost=2+2+2=6).
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{refs/chart_1.png}	
+        \caption{Prime Implicant Chart, first step for $F_1$}
+	\label{fig3}
+\end{figure}
+Figure 3 shows the initial form of the prime implicant chart for the function $F_1$. Here, it can be observed that 8 is a distinguished point, corresponding to the essential prime implicant B. Therefore, B needs to be included in the minimal covering sum. We continue with removing all rows and columns covered by B.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{refs/chart_2.png}	
+        \caption{Prime Implicant Chart, second step for $F_1$}
+	\label{fig4}
+\end{figure}
+Figure 4 shows the stage of the prime implicant chart after B is removed. Here there are not any distinguished points, however it can be seen that F covers both 11 and 15 points while E covers only 11. Since F has a lower cost than E, E can be removed from the chart. We proceed by removing E.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{refs/chart_3.png}	
+        \caption{Prime Implicant Chart, third step for $F_1$}
+	\label{fig5}
+\end{figure}
+Looking at the Figure 5, the point 11 is covered only by F. Therefore we include F in the minimal covering sum and cross out the rows and columns covered by it.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{refs/chart_4.png}	
+        \caption{Prime Implicant Chart, fourth step for $F_1$}
+	\label{fig6}
+\end{figure}
+
+Finally, from Figure 6 it can be observed that the minimum cost for covering both 6 and 7 is obtained by choosing C.
+
+\subsubsection{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{refs/1_d}	
+        \caption{Lowest Cost Expression with AND, OR, NOT Gates}
+	\label{fig7}
+\end{figure}
+
+\subsubsection{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{refs/1_e}	
+        \caption{Lowest Cost Expression with NAND Gates}
+	\label{fig8}
+\end{figure}
+Observe that it is enough to obtain the circuit in Figure 8 by replacing AND and OR gates in Figure 7 by NAND gates, since an OR gate with inverted inputs and an AND gate with inverted outputs are NAND gates. We can also design the NOT gates in the form of NAND gates.
+\\
+\subsubsection{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/1_f}	
+        \caption{Lowest Cost Expression with Multiplexer}
+	\label{fig9}
+\end{figure}
+
+\subsection{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/preliminary_decoder.png}	
+        \caption{$F_2$ and $F_3$ Using Decoder}
+	\label{fig10}
+\end{figure}
+We designed this part such that the decoder outputs both $F_2$ and $F_3$ functions. We did not simplify the expressions for these functions as it was not specified. Simplifying the expression for $F_3$ would result in $F_3(a,b,c) = ab\overline{c} + ab = ab(\overline{c}+1) = ab$
+\subsection{}
+When adding two unsigned numbers if the result is out of limits (carry bit is 1), more bits should be used to represent the result. In the case of adding two signed numbers, it is said that an overflow occurs if the sign bit of the result is different from the sign bit of the operands(either positive or negative). That kind of an error is not possible in the case of adding two numbers with different signs as the result will always be greater than the lowest representable negative number and lower than the highest representable positive number.
+When subtracting two unsigned numbers, one should be careful about their orderiing. Because subtracting a greater value from a smaller one will result in "borrow" where there is no carry bit present, meaning that the result is meaningless for the system in use. In the case of subtraction of two signed numbers a problem can occur when subtracting two numbers with different signs from each other. Since, similar to the case of addition, an overflow can occur if the result is out of range of the representable limits.
+\newpage
+\section{EXPERIMENT SIMULATIONS}
+ \subsection{PART 1}
+ \subsubsection{AND Gate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/and_gate.jpeg}	
+        \caption{Simulation Results for the AND Gate}
+	\label{fig11}
+\end{figure}
+ \subsubsection{OR Gate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/or_gate.jpeg}	
+        \caption{Simulation Results for the OR Gate}
+	\label{fig12}
+\end{figure}
+ \subsubsection{NOT Gate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/not_gate.jpeg}	
+        \caption{Simulation Results for the NOT Gate}
+	\label{fig13}
+\end{figure}
+ \subsubsection{XOR Gate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/xor_gate.jpeg}	
+        \caption{Simulation Results for the XOR Gate}
+	\label{fig15}
+\end{figure}
+ \subsubsection{NAND Gate}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/nand_gate.jpeg}	
+        \caption{Simulation Results for the NAND Gate}
+	\label{fig16}
+\end{figure}
+ \subsubsection{8:1 Multiplexer}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/multiplexer.jpeg}	
+        \caption{Simulation Results for 8:1 Multiplexer}
+	\label{fig14}
+\end{figure}
+ \subsubsection{3:8 Decoder}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{refs/decoder.jpeg}	
+        \caption{Simulation Results for the 3:8 Decoder}
+	\label{fig17}
+\end{figure}
+\section{DISCUSSION [25 points]}
+Please explain, analyze, and interpret what have you done during the  experiment. 
+
+\section{CONCLUSION [10 points]}
+Comment on any difficulties you have faced, what you have learned etc.
+
+\newpage
+\addcontentsline{toc}{section}{\numberline {}REFERENCES}
+
+\bibliographystyle{unsrt}
+\bibliography{reference}
+
+\end{document}
